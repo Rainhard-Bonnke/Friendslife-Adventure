@@ -9,6 +9,37 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { Compass } from "lucide-react";
 import { Link } from "react-router-dom";
+import { z } from "zod";
+
+const signUpSchema = z.object({
+  fullName: z
+    .string()
+    .trim()
+    .min(2, "Name must be at least 2 characters")
+    .max(100, "Name must be less than 100 characters")
+    .regex(/^[a-zA-Z\s'-]+$/, "Name can only contain letters, spaces, hyphens, and apostrophes"),
+  email: z
+    .string()
+    .trim()
+    .email("Please enter a valid email address")
+    .max(255, "Email must be less than 255 characters"),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+    .regex(/[0-9]/, "Password must contain at least one number"),
+});
+
+const signInSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .email("Please enter a valid email address"),
+  password: z
+    .string()
+    .min(1, "Password is required"),
+});
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -22,12 +53,19 @@ const Auth = () => {
     setIsLoading(true);
 
     try {
+      // Validate input
+      const validatedData = signUpSchema.parse({
+        fullName: fullName,
+        email: email,
+        password: password,
+      });
+
       const { error } = await supabase.auth.signUp({
-        email,
-        password,
+        email: validatedData.email,
+        password: validatedData.password,
         options: {
           data: {
-            full_name: fullName,
+            full_name: validatedData.fullName,
           },
           emailRedirectTo: `${window.location.origin}/`,
         },
@@ -40,7 +78,11 @@ const Auth = () => {
       setPassword("");
       setFullName("");
     } catch (error: any) {
-      toast.error(error.message || "Failed to create account");
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0].message);
+      } else {
+        toast.error(error.message || "Failed to create account");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -51,9 +93,15 @@ const Auth = () => {
     setIsLoading(true);
 
     try {
+      // Validate input
+      const validatedData = signInSchema.parse({
+        email: email,
+        password: password,
+      });
+
       const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+        email: validatedData.email,
+        password: validatedData.password,
       });
 
       if (error) throw error;
@@ -61,7 +109,11 @@ const Auth = () => {
       toast.success("Welcome back!");
       navigate("/dashboard");
     } catch (error: any) {
-      toast.error(error.message || "Failed to sign in");
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0].message);
+      } else {
+        toast.error(error.message || "Failed to sign in");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -150,8 +202,11 @@ const Auth = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      minLength={6}
+                      minLength={8}
                     />
+                    <p className="text-xs text-muted-foreground">
+                      Must be at least 8 characters with uppercase, lowercase, and a number
+                    </p>
                   </div>
                   <Button type="submit" className="w-full" disabled={isLoading}>
                     {isLoading ? "Creating account..." : "Create Account"}

@@ -14,16 +14,282 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          booking_status: string
+          created_at: string
+          id: string
+          num_travelers: number
+          package_id: string
+          payment_method: string | null
+          payment_status: string
+          special_requests: string | null
+          total_amount: number
+          transaction_id: string | null
+          travel_date: string
+          traveler_details: Json
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          booking_status?: string
+          created_at?: string
+          id?: string
+          num_travelers?: number
+          package_id: string
+          payment_method?: string | null
+          payment_status?: string
+          special_requests?: string | null
+          total_amount: number
+          transaction_id?: string | null
+          travel_date: string
+          traveler_details: Json
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          booking_status?: string
+          created_at?: string
+          id?: string
+          num_travelers?: number
+          package_id?: string
+          payment_method?: string | null
+          payment_status?: string
+          special_requests?: string | null
+          total_amount?: number
+          transaction_id?: string | null
+          travel_date?: string
+          traveler_details?: Json
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_package_id_fkey"
+            columns: ["package_id"]
+            isOneToOne: false
+            referencedRelation: "packages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      destinations: {
+        Row: {
+          country: string
+          created_at: string
+          description: string | null
+          highlights: string[] | null
+          id: string
+          image_url: string | null
+          region: string | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          country: string
+          created_at?: string
+          description?: string | null
+          highlights?: string[] | null
+          id?: string
+          image_url?: string | null
+          region?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          country?: string
+          created_at?: string
+          description?: string | null
+          highlights?: string[] | null
+          id?: string
+          image_url?: string | null
+          region?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      packages: {
+        Row: {
+          created_at: string
+          description: string | null
+          destination_id: string | null
+          difficulty: string
+          duration_days: number
+          duration_nights: number
+          highlights: string[] | null
+          id: string
+          image_url: string | null
+          included: string[] | null
+          itinerary: Json | null
+          not_included: string[] | null
+          price_kes: number
+          rating: number | null
+          seats_available: number
+          seats_total: number
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          destination_id?: string | null
+          difficulty?: string
+          duration_days: number
+          duration_nights: number
+          highlights?: string[] | null
+          id?: string
+          image_url?: string | null
+          included?: string[] | null
+          itinerary?: Json | null
+          not_included?: string[] | null
+          price_kes: number
+          rating?: number | null
+          seats_available?: number
+          seats_total?: number
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          destination_id?: string | null
+          difficulty?: string
+          duration_days?: number
+          duration_nights?: number
+          highlights?: string[] | null
+          id?: string
+          image_url?: string | null
+          included?: string[] | null
+          itinerary?: Json | null
+          not_included?: string[] | null
+          price_kes?: number
+          rating?: number | null
+          seats_available?: number
+          seats_total?: number
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "packages_destination_id_fkey"
+            columns: ["destination_id"]
+            isOneToOne: false
+            referencedRelation: "destinations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payment_logs: {
+        Row: {
+          amount: number
+          booking_id: string
+          created_at: string
+          id: string
+          payment_method: string
+          provider_response: Json | null
+          status: string
+          transaction_id: string | null
+        }
+        Insert: {
+          amount: number
+          booking_id: string
+          created_at?: string
+          id?: string
+          payment_method: string
+          provider_response?: Json | null
+          status: string
+          transaction_id?: string | null
+        }
+        Update: {
+          amount?: number
+          booking_id?: string
+          created_at?: string
+          id?: string
+          payment_method?: string
+          provider_response?: Json | null
+          status?: string
+          transaction_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payment_logs_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          full_name: string
+          id: string
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          full_name: string
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +416,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
