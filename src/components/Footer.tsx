@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Compass, Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import logo from "@/assets/logo.jpg";
 
 const Footer = () => {
   return (
@@ -8,14 +9,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <Link to="/" className="flex items-center gap-2 text-xl font-bold mb-4">
-              <Compass className="h-6 w-6 text-primary" />
-              <span className="bg-gradient-hero bg-clip-text text-transparent">
-                Safari Adventures
+            <Link to="/" className="flex items-center gap-2 mb-4">
+              <img src={logo} alt="Friends Life Adventure" className="h-12 w-12 object-contain" />
+              <span className="text-xl font-bold text-primary-foreground">
+                Friends Life Adventure
               </span>
             </Link>
             <p className="text-muted-foreground mb-4">
-              Creating unforgettable African travel experiences since 2010.
+              Creating unforgettable African travel experiences since 1999.
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
@@ -89,18 +90,18 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Phone className="h-5 w-5 text-primary" />
-                <span>+254 700 000 000</span>
+                <a href="tel:+254700000000" className="hover:text-primary">+254 700 000 000</a>
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="h-5 w-5 text-primary" />
-                <span>info@safari-adventures.com</span>
+                <a href="mailto:info@friendslifeadventure.com" className="hover:text-primary">info@friendslifeadventure.com</a>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="pt-8 border-t border-border text-center text-muted-foreground">
-          <p>&copy; 2024 Safari Adventures. All rights reserved.</p>
+          <p>&copy; 2024 Friends Life Adventure. All rights reserved. Since 1999.</p>
         </div>
       </div>
     </footer>

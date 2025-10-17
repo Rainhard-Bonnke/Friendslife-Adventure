@@ -1,35 +1,79 @@
 import { useParams, Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock, Users, MapPin, Check, Star } from "lucide-react";
-import heroImage from "@/assets/hero-safari.jpg";
+import { Calendar, Clock, Users, MapPin, Check, Star, Loader2, ArrowLeft } from "lucide-react";
 
 const PackageDetail = () => {
   const { id } = useParams();
 
-  // Mock data - in production, this would fetch from your backend
-  const packageData = {
-    id: "1",
-    title: "Maasai Mara Safari Experience",
-    destination: "Maasai Mara, Kenya",
-    price: 85000,
-    duration: "5 Days / 4 Nights",
-    groupSize: "4-12 people",
-    difficulty: "Easy",
-    rating: 4.9,
+  const { data: packageData, isLoading } = useQuery({
+    queryKey: ["package", id],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("packages")
+        .select(`
+          *,
+          destinations (
+            title,
+            country,
+            region
+          )
+        `)
+        .eq("id", id)
+        .eq("status", "published")
+        .maybeSingle();
+
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  if (!packageData) {
+    return (
+      <div className="min-h-screen">
+        <Navbar />
+        <div className="container mx-auto px-4 py-20 text-center">
+          <h1 className="text-4xl font-bold mb-4">Package Not Found</h1>
+          <p className="text-muted-foreground mb-8">
+            The package you're looking for doesn't exist.
+          </p>
+          <Button asChild>
+            <Link to="/packages">Browse All Packages</Link>
+          </Button>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  const destinationName = packageData.destinations 
+    ? `${packageData.destinations.title}, ${packageData.destinations.country}`
+    : "Kenya";
+
+  // Mock data for fields not yet in database
+  const mockData = {
+    groupSize: `${packageData.seats_total} people max`,
     reviews: 127,
-    image: heroImage,
-    description: "Embark on an unforgettable journey through the world-famous Maasai Mara National Reserve. Witness the great migration, spot the Big Five, and immerse yourself in Maasai culture.",
-    highlights: [
-      "Game drives in 4x4 safari vehicles",
-      "Visit to a traditional Maasai village",
-      "Witness the Big Five in their natural habitat",
-      "Sundowner experience in the savanna",
-      "Professional guide and park fees included"
-    ],
-    itinerary: [
+  };
+
+  const displayData = {
+    ...packageData,
+    ...mockData,
+    destination: destinationName,
+    duration: `${packageData.duration_days} Days / ${packageData.duration_nights} Nights`,
+    itinerary: packageData.itinerary || [
       {
         day: 1,
         title: "Arrival & Orientation",
@@ -56,22 +100,6 @@ const PackageDetail = () => {
         description: "Final morning game drive, breakfast at the lodge, return journey to Nairobi."
       }
     ],
-    included: [
-      "Accommodation in safari lodge",
-      "All meals during the safari",
-      "Park entrance fees",
-      "Professional driver-guide",
-      "4x4 safari vehicle",
-      "Bottled water during drives",
-      "Airport transfers"
-    ],
-    notIncluded: [
-      "International flights",
-      "Travel insurance",
-      "Personal expenses",
-      "Tips for guide and staff",
-      "Optional activities"
-    ]
   };
 
   return (
@@ -81,34 +109,40 @@ const PackageDetail = () => {
       {/* Hero Image */}
       <div className="relative h-[60vh] mt-16">
         <img 
-          src={packageData.image} 
-          alt={packageData.title}
+          src={displayData.image_url || "/placeholder.svg"} 
+          alt={displayData.title}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/70" />
         <div className="absolute bottom-0 left-0 right-0 container mx-auto px-4 pb-8">
+          <Button asChild variant="ghost" className="text-white hover:text-white/80 mb-4">
+            <Link to="/packages">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Packages
+            </Link>
+          </Button>
           <Badge className="bg-accent text-accent-foreground mb-4">
-            {packageData.difficulty}
+            {displayData.difficulty}
           </Badge>
           <h1 className="text-5xl font-bold text-white mb-4">
-            {packageData.title}
+            {displayData.title}
           </h1>
           <div className="flex flex-wrap items-center gap-6 text-white">
             <div className="flex items-center gap-2">
               <MapPin className="h-5 w-5" />
-              <span>{packageData.destination}</span>
+              <span>{displayData.destination}</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock className="h-5 w-5" />
-              <span>{packageData.duration}</span>
+              <span>{displayData.duration}</span>
             </div>
             <div className="flex items-center gap-2">
               <Users className="h-5 w-5" />
-              <span>{packageData.groupSize}</span>
+              <span>{displayData.groupSize}</span>
             </div>
             <div className="flex items-center gap-2">
               <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-              <span>{packageData.rating} ({packageData.reviews} reviews)</span>
+              <span>{displayData.rating} ({displayData.reviews} reviews)</span>
             </div>
           </div>
         </div>
@@ -123,28 +157,30 @@ const PackageDetail = () => {
             <section>
               <h2 className="text-3xl font-bold mb-4">Overview</h2>
               <p className="text-muted-foreground leading-relaxed">
-                {packageData.description}
+                {displayData.description}
               </p>
             </section>
 
             {/* Highlights */}
-            <section>
-              <h2 className="text-3xl font-bold mb-4">Highlights</h2>
-              <ul className="space-y-3">
-                {packageData.highlights.map((highlight, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-accent shrink-0 mt-1" />
-                    <span>{highlight}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
+            {displayData.highlights && displayData.highlights.length > 0 && (
+              <section>
+                <h2 className="text-3xl font-bold mb-4">Highlights</h2>
+                <ul className="space-y-3">
+                  {displayData.highlights.map((highlight: string, index: number) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <Check className="h-5 w-5 text-accent shrink-0 mt-1" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
 
             {/* Itinerary */}
             <section>
               <h2 className="text-3xl font-bold mb-6">Itinerary</h2>
               <div className="space-y-6">
-                {packageData.itinerary.map((day) => (
+                {Array.isArray(displayData.itinerary) && displayData.itinerary.map((day: any) => (
                   <div key={day.day} className="border-l-4 border-primary pl-6 pb-4">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold">
@@ -159,32 +195,38 @@ const PackageDetail = () => {
             </section>
 
             {/* What's Included */}
-            <section>
-              <h2 className="text-3xl font-bold mb-6">What's Included</h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 text-accent">Included</h3>
-                  <ul className="space-y-2">
-                    {packageData.included.map((item, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                        <span className="text-muted-foreground">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+            {(displayData.included || displayData.not_included) && (
+              <section>
+                <h2 className="text-3xl font-bold mb-6">What's Included</h2>
+                <div className="grid md:grid-cols-2 gap-8">
+                  {displayData.included && displayData.included.length > 0 && (
+                    <div>
+                      <h3 className="text-xl font-semibold mb-4 text-accent">Included</h3>
+                      <ul className="space-y-2">
+                        {displayData.included.map((item: string, index: number) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <Check className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                            <span className="text-muted-foreground">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {displayData.not_included && displayData.not_included.length > 0 && (
+                    <div>
+                      <h3 className="text-xl font-semibold mb-4 text-destructive">Not Included</h3>
+                      <ul className="space-y-2">
+                        {displayData.not_included.map((item: string, index: number) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <span className="text-muted-foreground">• {item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 text-destructive">Not Included</h3>
-                  <ul className="space-y-2">
-                    {packageData.notIncluded.map((item, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <span className="text-muted-foreground">• {item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </section>
+              </section>
+            )}
           </div>
 
           {/* Right Column - Booking Card */}
@@ -193,7 +235,7 @@ const PackageDetail = () => {
               <div className="mb-6">
                 <div className="flex items-baseline gap-2 mb-2">
                   <span className="text-4xl font-bold text-primary">
-                    KES {packageData.price.toLocaleString()}
+                    KES {displayData.price_kes.toLocaleString()}
                   </span>
                 </div>
                 <p className="text-muted-foreground">per person</p>
@@ -202,15 +244,19 @@ const PackageDetail = () => {
               <div className="space-y-4 mb-6">
                 <div className="flex items-center justify-between py-3 border-b border-border">
                   <span className="text-muted-foreground">Duration</span>
-                  <span className="font-semibold">{packageData.duration}</span>
+                  <span className="font-semibold">{displayData.duration}</span>
                 </div>
                 <div className="flex items-center justify-between py-3 border-b border-border">
                   <span className="text-muted-foreground">Group Size</span>
-                  <span className="font-semibold">{packageData.groupSize}</span>
+                  <span className="font-semibold">{displayData.groupSize}</span>
+                </div>
+                <div className="flex items-center justify-between py-3 border-b border-border">
+                  <span className="text-muted-foreground">Seats Available</span>
+                  <span className="font-semibold text-accent">{displayData.seats_available}</span>
                 </div>
                 <div className="flex items-center justify-between py-3">
                   <span className="text-muted-foreground">Difficulty</span>
-                  <Badge>{packageData.difficulty}</Badge>
+                  <Badge>{displayData.difficulty}</Badge>
                 </div>
               </div>
 

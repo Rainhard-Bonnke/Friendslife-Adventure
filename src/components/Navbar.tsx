@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Compass, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import logo from "@/assets/logo.jpg";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -10,9 +11,9 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center gap-2 font-bold text-xl text-foreground hover:text-primary transition-colors">
-            <Compass className="w-6 h-6 text-primary" />
-            Safari Kenya
+          <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
+            <img src={logo} alt="Friends Life Adventure" className="h-12 w-12 object-contain" />
+            <span className="font-bold text-lg text-foreground">Friends Life Adventure</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-6">
