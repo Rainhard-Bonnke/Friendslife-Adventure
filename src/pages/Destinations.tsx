@@ -36,9 +36,9 @@ const Destinations = () => {
       <div className="pt-24 pb-20">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Discover Kenya</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Discover East Africa</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Explore breathtaking destinations across Kenya
+              Explore breathtaking destinations across Kenya, Tanzania, Uganda, Rwanda, Ethiopia, and beyond
             </p>
           </div>
 

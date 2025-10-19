@@ -26,6 +26,9 @@ const Navbar = () => {
             <Link to="/packages" className="text-foreground hover:text-primary transition-colors font-medium">
               Packages
             </Link>
+            <Link to="/gallery" className="text-foreground hover:text-primary transition-colors font-medium">
+              Gallery
+            </Link>
             <Link to="/about" className="text-foreground hover:text-primary transition-colors font-medium">
               About
             </Link>
@@ -74,6 +77,13 @@ const Navbar = () => {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Packages
+              </Link>
+              <Link
+                to="/gallery"
+                className="text-foreground hover:text-primary transition-colors font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Gallery
               </Link>
               <Link
                 to="/about"

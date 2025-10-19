@@ -8,6 +8,7 @@ import Packages from "./pages/Packages";
 import PackageDetail from "./pages/PackageDetail";
 import Destinations from "./pages/Destinations";
 import DestinationDetail from "./pages/DestinationDetail";
+import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/packages/:id" element={<PackageDetail />} />
           <Route path="/destinations" element={<Destinations />} />
           <Route path="/destinations/:id" element={<DestinationDetail />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/auth" element={<Auth />} />

@@ -55,10 +55,10 @@ const Home = () => {
         
         <div className="relative z-10 container mx-auto px-4 text-white text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-            Discover the Magic of Kenya
+            Discover the Magic of East Africa
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white/90">
-            Experience unforgettable safaris, pristine beaches, and rich culture with Kenya's leading travel experts
+            Experience unforgettable safaris, pristine beaches, and rich cultures across Kenya, Tanzania, Uganda, Rwanda, and beyond
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild className="text-lg px-8 py-6 bg-primary hover:bg-primary/90">
