@@ -4,8 +4,12 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-// Import gallery images - Real East African culture and tourist attractions
+// Import gallery images - Authentic East African culture and people
 import maasaiCulture from "@/assets/gallery/maasai-real.jpg";
+import maasaiWarriors from "@/assets/gallery/maasai-warriors-ceremony.jpg";
+import kenyanSafariGuide from "@/assets/gallery/kenyan-safari-guide.jpg";
+import maasaiWomenCeremony from "@/assets/gallery/maasai-women-ceremony.jpg";
+import africanSafariGuide from "@/assets/gallery/african-safari-guide.jpg";
 import elephantsSunset from "@/assets/gallery/elephants-real.jpg";
 import africanMarket from "@/assets/gallery/african-market.jpg";
 import lionsSavanna from "@/assets/gallery/lions-real.jpg";
@@ -21,35 +25,41 @@ import maasaiWomen from "@/assets/gallery/maasai-women.jpg";
 import africanMusicians from "@/assets/gallery/african-musicians.jpg";
 import tribalClothing from "@/assets/gallery/tribal-clothing.jpg";
 
-// Import destination images - Real East African destinations
-import maasaiMara from "@/assets/destinations/maasai-mara-real.jpg";
-import mountKenya from "@/assets/destinations/mount-kenya.jpg";
-import dianiBeach from "@/assets/destinations/diani-beach.jpg";
-import nairobiCity from "@/assets/destinations/nairobi-city.jpg";
-import serengeti from "@/assets/destinations/serengeti-real.jpg";
-import zanzibar from "@/assets/destinations/zanzibar.jpg";
-import bwindiForest from "@/assets/destinations/bwindi-forest.jpg";
+// Import destination images - Authentic East African destinations
+import maasaiMara from "@/assets/destinations/maasai-mara-authentic.jpg";
+import mountKenya from "@/assets/destinations/mount-kenya-authentic.jpg";
+import dianiBeach from "@/assets/destinations/diani-beach-coast.jpg";
+import nairobiCity from "@/assets/destinations/nairobi-authentic.jpg";
+import serengeti from "@/assets/destinations/serengeti-landscape.jpg";
+import zanzibar from "@/assets/destinations/zanzibar-authentic.jpg";
+import bwindiForest from "@/assets/destinations/bwindi-authentic.jpg";
 import volcanoesRwanda from "@/assets/destinations/volcanoes-rwanda.jpg";
 import simienMountains from "@/assets/destinations/simien-mountains.jpg";
-import victoriaFalls from "@/assets/destinations/victoria-falls-real.jpg";
-import amboseli from "@/assets/destinations/amboseli-real.jpg";
+import victoriaFalls from "@/assets/destinations/victoria-falls-view.jpg";
+import amboseli from "@/assets/destinations/amboseli-elephants.jpg";
 import lakeVictoria from "@/assets/destinations/lake-victoria.jpg";
 import nileRiver from "@/assets/destinations/nile-river.jpg";
 import lamuIsland from "@/assets/destinations/lamu-island.jpg";
 import kilimanjaro from "@/assets/destinations/kilimanjaro.jpg";
+import maasaiMaraWildlife from "@/assets/destinations/maasai-mara-wildlife.jpg";
+import samburuReserve from "@/assets/destinations/samburu-reserve.jpg";
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const cultureImages = [
-    { src: maasaiCulture, title: "Maasai Warriors", description: "Traditional jumping ceremony" },
+    { src: maasaiWarriors, title: "Maasai Warriors Ceremony", description: "Traditional Adumu jumping dance" },
+    { src: maasaiWomenCeremony, title: "Maasai Women", description: "Colorful traditional dress and beadwork" },
+    { src: maasaiCulture, title: "Maasai Culture", description: "Authentic tribal traditions" },
+    { src: kenyanSafariGuide, title: "Kenyan Safari Guide", description: "Expert wildlife guide in Maasai Mara" },
+    { src: africanSafariGuide, title: "African Safari Experience", description: "Local guides sharing knowledge" },
     { src: traditionalDance, title: "Traditional Dance", description: "East African cultural performance" },
     { src: africanMarket, title: "African Market", description: "Colorful crafts and textiles" },
     { src: africanCrafts, title: "Handmade Crafts", description: "Traditional East African artistry" },
     { src: maasaiVillage, title: "Maasai Village", description: "Authentic cultural homestead" },
     { src: traditionalDress, title: "Traditional Attire", description: "Vibrant cultural clothing" },
     { src: culturalCeremony, title: "Cultural Ceremony", description: "Community celebration" },
-    { src: maasaiWomen, title: "Maasai Women", description: "Traditional beadwork and jewelry" },
+    { src: maasaiWomen, title: "Maasai Jewelry", description: "Intricate beadwork and adornments" },
     { src: africanMusicians, title: "Traditional Musicians", description: "Rhythms of East Africa" },
     { src: tribalClothing, title: "Tribal Heritage", description: "Colorful cultural expressions" },
     { src: villageKilimanjaro, title: "Traditional Village", description: "Life at the foot of Kilimanjaro" },
@@ -62,19 +72,21 @@ const Gallery = () => {
   ];
 
   const landscapeImages = [
-    { src: maasaiMara, title: "Maasai Mara", description: "Golden hour in the Mara" },
-    { src: mountKenya, title: "Mount Kenya", description: "Misty mountain majesty" },
+    { src: maasaiMara, title: "Maasai Mara", description: "Wildebeest migration spectacle" },
+    { src: maasaiMaraWildlife, title: "Maasai Mara Wildlife", description: "Golden savanna landscape" },
+    { src: mountKenya, title: "Mount Kenya", description: "Trekking with local guides" },
     { src: kilimanjaro, title: "Mount Kilimanjaro", description: "Africa's highest peak" },
-    { src: dianiBeach, title: "Diani Beach", description: "Paradise on the coast" },
-    { src: nairobiCity, title: "Nairobi", description: "Modern African metropolis" },
-    { src: serengeti, title: "Serengeti", description: "The great migration" },
-    { src: zanzibar, title: "Zanzibar", description: "Spice island beaches" },
+    { src: dianiBeach, title: "Diani Beach", description: "Pristine coastal paradise" },
+    { src: nairobiCity, title: "Nairobi", description: "Modern East African hub" },
+    { src: serengeti, title: "Serengeti", description: "Tanzania's endless plains" },
+    { src: zanzibar, title: "Stone Town Zanzibar", description: "Historic Swahili culture" },
     { src: lakeVictoria, title: "Lake Victoria", description: "Africa's largest lake" },
     { src: nileRiver, title: "River Nile", description: "Source of the Nile in Uganda" },
     { src: lamuIsland, title: "Lamu Island", description: "UNESCO World Heritage Site" },
-    { src: bwindiForest, title: "Bwindi Forest", description: "Gorilla habitat" },
+    { src: bwindiForest, title: "Bwindi Forest Uganda", description: "Gorilla trekking with rangers" },
     { src: volcanoesRwanda, title: "Volcanoes Park", description: "Misty volcanic peaks" },
     { src: amboseli, title: "Amboseli Park", description: "Elephants and Kilimanjaro views" },
+    { src: samburuReserve, title: "Samburu Reserve", description: "Northern Kenya wilderness" },
     { src: simienMountains, title: "Simien Mountains", description: "Ethiopia's dramatic highlands" },
     { src: victoriaFalls, title: "Victoria Falls", description: "Thunder that smokes" },
     { src: africanSunsetCulture, title: "East African Sunset", description: "Golden moments in the savanna" },
