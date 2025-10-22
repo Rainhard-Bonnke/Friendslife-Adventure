@@ -8,6 +8,48 @@ import DestinationCard from "@/components/DestinationCard";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 
+// Import destination images
+import maasaiMaraImg from "@/assets/destinations/maasai-mara-authentic.jpg";
+import serengetiImg from "@/assets/destinations/serengeti-landscape.jpg";
+import mountKenyaImg from "@/assets/destinations/mount-kenya-authentic.jpg";
+import nairobiImg from "@/assets/destinations/nairobi-authentic.jpg";
+import zanzibarImg from "@/assets/destinations/zanzibar-authentic.jpg";
+import bwindiImg from "@/assets/destinations/bwindi-authentic.jpg";
+import amboseliImg from "@/assets/destinations/amboseli-elephants.jpg";
+import victoriaFallsImg from "@/assets/destinations/victoria-falls-view.jpg";
+import dianiBeachImg from "@/assets/destinations/diani-beach-coast.jpg";
+import samburuImg from "@/assets/destinations/samburu-reserve.jpg";
+import lakeVictoriaImg from "@/assets/destinations/lake-victoria.jpg";
+import nileRiverImg from "@/assets/destinations/nile-river.jpg";
+import lamuIslandImg from "@/assets/destinations/lamu-island.jpg";
+import kilimanjaroImg from "@/assets/destinations/kilimanjaro.jpg";
+import volcanoesRwandaImg from "@/assets/destinations/volcanoes-rwanda.jpg";
+import simienMountainsImg from "@/assets/destinations/simien-mountains.jpg";
+
+// Map destination titles to images
+const destinationImages: Record<string, string> = {
+  "Maasai Mara National Reserve": maasaiMaraImg,
+  "Serengeti National Park": serengetiImg,
+  "Mount Kenya National Park": mountKenyaImg,
+  "Mount Kenya": mountKenyaImg,
+  "Nairobi City": nairobiImg,
+  "Zanzibar Archipelago": zanzibarImg,
+  "Bwindi Impenetrable Forest": bwindiImg,
+  "Amboseli National Park": amboseliImg,
+  "Victoria Falls": victoriaFallsImg,
+  "Diani Beach": dianiBeachImg,
+  "Samburu National Reserve": samburuImg,
+  "Lake Victoria": lakeVictoriaImg,
+  "River Nile": nileRiverImg,
+  "Lamu Island": lamuIslandImg,
+  "Mount Kilimanjaro": kilimanjaroImg,
+  "Volcanoes National Park": volcanoesRwandaImg,
+  "Simien Mountains": simienMountainsImg,
+  "Lake Nakuru National Park": lakeVictoriaImg,
+  "Tsavo National Parks": amboseliImg,
+  "Hell's Gate National Park": mountKenyaImg,
+};
+
 const Destinations = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -69,7 +111,7 @@ const Destinations = () => {
                   title={dest.title}
                   country={dest.country}
                   region={dest.region}
-                  imageUrl={dest.image_url || ""}
+                  imageUrl={destinationImages[dest.title] || maasaiMaraImg}
                   description={dest.description}
                 />
               ))}
