@@ -8,16 +8,16 @@ import DestinationCard from "@/components/DestinationCard";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 
-// Import destination images
-import maasaiMaraImg from "@/assets/destinations/maasai-mara-authentic.jpg";
-import serengetiImg from "@/assets/destinations/serengeti-landscape.jpg";
-import mountKenyaImg from "@/assets/destinations/mount-kenya-authentic.jpg";
-import nairobiImg from "@/assets/destinations/nairobi-authentic.jpg";
-import zanzibarImg from "@/assets/destinations/zanzibar-authentic.jpg";
-import bwindiImg from "@/assets/destinations/bwindi-authentic.jpg";
-import amboseliImg from "@/assets/destinations/amboseli-elephants.jpg";
+// Import destination images - Fast-loading authentic East African images
+import maasaiMaraImg from "@/assets/destinations/maasai-mara-final.jpg";
+import serengetiImg from "@/assets/destinations/serengeti-final.jpg";
+import mountKenyaImg from "@/assets/destinations/mount-kenya-final.jpg";
+import nairobiImg from "@/assets/destinations/nairobi-final.jpg";
+import zanzibarImg from "@/assets/destinations/zanzibar-final.jpg";
+import bwindiImg from "@/assets/destinations/bwindi-final.jpg";
+import amboseliImg from "@/assets/destinations/amboseli-final.jpg";
 import victoriaFallsImg from "@/assets/destinations/victoria-falls-view.jpg";
-import dianiBeachImg from "@/assets/destinations/diani-beach-coast.jpg";
+import dianiBeachImg from "@/assets/destinations/diani-final.jpg";
 import samburuImg from "@/assets/destinations/samburu-reserve.jpg";
 import lakeVictoriaImg from "@/assets/destinations/lake-victoria.jpg";
 import nileRiverImg from "@/assets/destinations/nile-river.jpg";

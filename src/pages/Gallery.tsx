@@ -25,18 +25,18 @@ import maasaiWomen from "@/assets/gallery/maasai-women.jpg";
 import africanMusicians from "@/assets/gallery/african-musicians.jpg";
 import tribalClothing from "@/assets/gallery/tribal-clothing.jpg";
 
-// Import destination images - Authentic East African destinations
-import maasaiMara from "@/assets/destinations/maasai-mara-authentic.jpg";
-import mountKenya from "@/assets/destinations/mount-kenya-authentic.jpg";
-import dianiBeach from "@/assets/destinations/diani-beach-coast.jpg";
-import nairobiCity from "@/assets/destinations/nairobi-authentic.jpg";
-import serengeti from "@/assets/destinations/serengeti-landscape.jpg";
-import zanzibar from "@/assets/destinations/zanzibar-authentic.jpg";
-import bwindiForest from "@/assets/destinations/bwindi-authentic.jpg";
+// Import destination images - Fast-loading authentic East African images
+import maasaiMara from "@/assets/destinations/maasai-mara-final.jpg";
+import mountKenya from "@/assets/destinations/mount-kenya-final.jpg";
+import dianiBeach from "@/assets/destinations/diani-final.jpg";
+import nairobiCity from "@/assets/destinations/nairobi-final.jpg";
+import serengeti from "@/assets/destinations/serengeti-final.jpg";
+import zanzibar from "@/assets/destinations/zanzibar-final.jpg";
+import bwindiForest from "@/assets/destinations/bwindi-final.jpg";
 import volcanoesRwanda from "@/assets/destinations/volcanoes-rwanda.jpg";
 import simienMountains from "@/assets/destinations/simien-mountains.jpg";
 import victoriaFalls from "@/assets/destinations/victoria-falls-view.jpg";
-import amboseli from "@/assets/destinations/amboseli-elephants.jpg";
+import amboseli from "@/assets/destinations/amboseli-final.jpg";
 import lakeVictoria from "@/assets/destinations/lake-victoria.jpg";
 import nileRiver from "@/assets/destinations/nile-river.jpg";
 import lamuIsland from "@/assets/destinations/lamu-island.jpg";
