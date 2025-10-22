@@ -4,15 +4,11 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-// Import gallery images - Authentic East African culture and people
+// Import gallery images - REAL East African photographs
 import maasaiCulture from "@/assets/gallery/maasai-real.jpg";
-import maasaiWarriors from "@/assets/gallery/maasai-warriors-ceremony.jpg";
-import kenyanSafariGuide from "@/assets/gallery/kenyan-safari-guide.jpg";
-import maasaiWomenCeremony from "@/assets/gallery/maasai-women-ceremony.jpg";
-import africanSafariGuide from "@/assets/gallery/african-safari-guide.jpg";
 import elephantsSunset from "@/assets/gallery/elephants-real.jpg";
 import africanMarket from "@/assets/gallery/african-market.jpg";
-import lionsSavanna from "@/assets/gallery/lions-real.jpg";
+import lionsSavanna from "@/assets/gallery/lion-kenya-real.jpg";
 import villageKilimanjaro from "@/assets/gallery/village-kilimanjaro.jpg";
 import giraffesSunset from "@/assets/gallery/giraffes-sunset.jpg";
 import traditionalDance from "@/assets/gallery/traditional-dance.jpg";
@@ -25,18 +21,18 @@ import maasaiWomen from "@/assets/gallery/maasai-women.jpg";
 import africanMusicians from "@/assets/gallery/african-musicians.jpg";
 import tribalClothing from "@/assets/gallery/tribal-clothing.jpg";
 
-// Import destination images - Fast-loading authentic East African images
-import maasaiMara from "@/assets/destinations/maasai-mara-final.jpg";
-import mountKenya from "@/assets/destinations/mount-kenya-final.jpg";
-import dianiBeach from "@/assets/destinations/diani-final.jpg";
-import nairobiCity from "@/assets/destinations/nairobi-final.jpg";
-import serengeti from "@/assets/destinations/serengeti-final.jpg";
-import zanzibar from "@/assets/destinations/zanzibar-final.jpg";
-import bwindiForest from "@/assets/destinations/bwindi-final.jpg";
+// Import destination images - REAL East African photographs
+import maasaiMara from "@/assets/destinations/maasai-mara-real.jpg";
+import mountKenya from "@/assets/destinations/mount-kenya-real.jpg";
+import dianiBeach from "@/assets/destinations/diani-real.jpg";
+import nairobiCity from "@/assets/destinations/nairobi-real.jpg";
+import serengeti from "@/assets/destinations/serengeti-real.jpg";
+import zanzibar from "@/assets/destinations/zanzibar-beach-real.jpg";
+import bwindiForest from "@/assets/destinations/bwindi-forest.jpg";
 import volcanoesRwanda from "@/assets/destinations/volcanoes-rwanda.jpg";
 import simienMountains from "@/assets/destinations/simien-mountains.jpg";
-import victoriaFalls from "@/assets/destinations/victoria-falls-view.jpg";
-import amboseli from "@/assets/destinations/amboseli-final.jpg";
+import victoriaFalls from "@/assets/destinations/victoria-falls-real.jpg";
+import amboseli from "@/assets/destinations/amboseli-real.jpg";
 import lakeVictoria from "@/assets/destinations/lake-victoria.jpg";
 import nileRiver from "@/assets/destinations/nile-river.jpg";
 import lamuIsland from "@/assets/destinations/lamu-island.jpg";
@@ -48,27 +44,23 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const cultureImages = [
-    { src: maasaiWarriors, title: "Maasai Warriors Ceremony", description: "Traditional Adumu jumping dance" },
-    { src: maasaiWomenCeremony, title: "Maasai Women", description: "Colorful traditional dress and beadwork" },
-    { src: maasaiCulture, title: "Maasai Culture", description: "Authentic tribal traditions" },
-    { src: kenyanSafariGuide, title: "Kenyan Safari Guide", description: "Expert wildlife guide in Maasai Mara" },
-    { src: africanSafariGuide, title: "African Safari Experience", description: "Local guides sharing knowledge" },
+    { src: maasaiCulture, title: "Maasai Traditional Culture", description: "Real Maasai people in Kenya" },
     { src: traditionalDance, title: "Traditional Dance", description: "East African cultural performance" },
-    { src: africanMarket, title: "African Market", description: "Colorful crafts and textiles" },
-    { src: africanCrafts, title: "Handmade Crafts", description: "Traditional East African artistry" },
-    { src: maasaiVillage, title: "Maasai Village", description: "Authentic cultural homestead" },
+    { src: africanMarket, title: "African Market", description: "Local markets with authentic crafts" },
+    { src: africanCrafts, title: "Handmade Crafts", description: "Traditional artisan work" },
+    { src: maasaiVillage, title: "Maasai Village", description: "Authentic homestead" },
     { src: traditionalDress, title: "Traditional Attire", description: "Vibrant cultural clothing" },
     { src: culturalCeremony, title: "Cultural Ceremony", description: "Community celebration" },
-    { src: maasaiWomen, title: "Maasai Jewelry", description: "Intricate beadwork and adornments" },
+    { src: maasaiWomen, title: "Maasai Beadwork", description: "Traditional jewelry art" },
     { src: africanMusicians, title: "Traditional Musicians", description: "Rhythms of East Africa" },
-    { src: tribalClothing, title: "Tribal Heritage", description: "Colorful cultural expressions" },
-    { src: villageKilimanjaro, title: "Traditional Village", description: "Life at the foot of Kilimanjaro" },
+    { src: tribalClothing, title: "Tribal Heritage", description: "Cultural expressions" },
+    { src: villageKilimanjaro, title: "Mountain Village", description: "Life near Kilimanjaro" },
   ];
 
   const wildlifeImages = [
-    { src: elephantsSunset, title: "Elephants at Sunset", description: "Majestic African elephants" },
-    { src: lionsSavanna, title: "Lion Pride", description: "Kings of the savanna" },
-    { src: giraffesSunset, title: "Giraffe Silhouettes", description: "Grace under African skies" },
+    { src: elephantsSunset, title: "African Elephants", description: "Real wildlife photography" },
+    { src: lionsSavanna, title: "Lions in Kenya", description: "Authentic safari capture" },
+    { src: giraffesSunset, title: "Giraffes at Sunset", description: "Real African wildlife" },
   ];
 
   const landscapeImages = [
