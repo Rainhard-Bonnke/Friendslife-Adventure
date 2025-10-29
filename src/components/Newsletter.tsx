@@ -3,6 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+
+const newsletterSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .email("Please enter a valid email address")
+    .max(255, "Email must be less than 255 characters")
+    .toLowerCase(),
+});
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
@@ -13,15 +23,28 @@ const Newsletter = () => {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate API call
-    setTimeout(() => {
-      toast({
-        title: "Successfully subscribed!",
-        description: "You'll receive exclusive travel deals and inspiration in your inbox.",
-      });
-      setEmail("");
+    try {
+      const validated = newsletterSchema.parse({ email });
+      
+      // Simulate API call with validated email
+      setTimeout(() => {
+        toast({
+          title: "Successfully subscribed!",
+          description: "You'll receive exclusive travel deals and inspiration in your inbox.",
+        });
+        setEmail("");
+        setLoading(false);
+      }, 1000);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Invalid Email",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      }
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -45,6 +68,7 @@ const Newsletter = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              maxLength={255}
               className="bg-primary-foreground text-foreground flex-1"
             />
             <Button
