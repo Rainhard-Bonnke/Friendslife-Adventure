@@ -7,6 +7,24 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search } from "lucide-react";
 
+// Import African wildlife images for packages
+import maasaiMaraImg from "@/assets/destinations/maasai-mara-real.jpg";
+import serengetiImg from "@/assets/destinations/serengeti-real.jpg";
+import mountKenyaImg from "@/assets/destinations/mount-kenya-real.jpg";
+import zanzibarImg from "@/assets/destinations/zanzibar-beach-real.jpg";
+import amboseliImg from "@/assets/destinations/amboseli-real.jpg";
+import bwindiImg from "@/assets/destinations/bwindi-forest.jpg";
+
+// Map package image identifiers to actual images
+const packageImages: Record<string, string> = {
+  "maasai-mara": maasaiMaraImg,
+  "serengeti": serengetiImg,
+  "mount-kenya": mountKenyaImg,
+  "zanzibar": zanzibarImg,
+  "amboseli": amboseliImg,
+  "bwindi": bwindiImg,
+};
+
 const Packages = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [difficultyFilter, setDifficultyFilter] = useState<string>("all");
@@ -103,19 +121,19 @@ const Packages = () => {
           ) : filteredPackages && filteredPackages.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPackages.map((pkg) => (
-                <PackageCard
-                  key={pkg.id}
-                  id={pkg.id}
-                  title={pkg.title}
-                  description={pkg.description || ""}
-                  imageUrl={pkg.image_url || ""}
-                  priceKes={Number(pkg.price_kes)}
-                  durationDays={pkg.duration_days}
-                  durationNights={pkg.duration_nights}
-                  difficulty={pkg.difficulty}
-                  seatsAvailable={pkg.seats_available}
-                  rating={Number(pkg.rating) || 4.5}
-                />
+              <PackageCard
+                key={pkg.id}
+                id={pkg.id}
+                title={pkg.title}
+                description={pkg.description || ""}
+                imageUrl={packageImages[pkg.image_url || ""] || maasaiMaraImg}
+                priceKes={Number(pkg.price_kes)}
+                durationDays={pkg.duration_days}
+                durationNights={pkg.duration_nights}
+                difficulty={pkg.difficulty}
+                seatsAvailable={pkg.seats_available}
+                rating={Number(pkg.rating) || 4.5}
+              />
               ))}
             </div>
           ) : (

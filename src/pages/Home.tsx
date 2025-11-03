@@ -55,6 +55,16 @@ const destinationImages: Record<string, string> = {
   "Hell's Gate National Park": hellsGateImg,
 };
 
+// Map package image identifiers to actual images
+const packageImages: Record<string, string> = {
+  "maasai-mara": maasaiMaraImg,
+  "serengeti": serengetiImg,
+  "mount-kenya": mountKenyaImg,
+  "zanzibar": zanzibarImg,
+  "amboseli": amboseliImg,
+  "bwindi": bwindiImg,
+};
+
 const Home = () => {
   const { data: featuredPackages } = useQuery({
     queryKey: ["featured-packages"],
@@ -101,28 +111,28 @@ const Home = () => {
         </div>
         
         <div className="relative z-10 container mx-auto px-4 text-white text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 animate-fade-in leading-tight">
             Discover the Magic of East Africa
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white/90">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 max-w-3xl mx-auto text-white/90 px-4">
             Experience unforgettable safaris, pristine beaches, and rich cultures across Kenya, Tanzania, Uganda, Rwanda, and beyond
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild className="text-lg px-8 py-6 bg-primary hover:bg-primary/90">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
+            <Button size="lg" asChild className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6 bg-primary hover:bg-primary/90">
               <Link to="/packages">
-                Browse Packages <ArrowRight className="ml-2 w-5 h-5" />
+                Browse Packages <ArrowRight className="ml-2 w-4 md:w-5 h-4 md:h-5" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="text-lg px-8 py-6 bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20">
+            <Button size="lg" variant="outline" asChild className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6 bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20">
               <Link to="/destinations">Explore Destinations</Link>
             </Button>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-muted/30">
+      <section className="py-12 md:py-16 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="w-8 h-8 text-primary" />
@@ -155,11 +165,11 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Featured Safari Packages</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4">Featured Safari Packages</h2>
+            <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto px-4">
               Handpicked adventures designed to give you the best of Kenya
             </p>
           </div>
@@ -171,7 +181,7 @@ const Home = () => {
                 id={pkg.id}
                 title={pkg.title}
                 description={pkg.description || ""}
-                imageUrl={pkg.image_url || ""}
+                imageUrl={packageImages[pkg.image_url || ""] || maasaiMaraImg}
                 priceKes={Number(pkg.price_kes)}
                 durationDays={pkg.duration_days}
                 durationNights={pkg.duration_nights}
@@ -192,11 +202,11 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Popular Destinations</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4">Popular Destinations</h2>
+            <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto px-4">
               From savannas to beaches, explore Kenya's diverse landscapes
             </p>
           </div>
@@ -231,13 +241,13 @@ const Home = () => {
 
       <Newsletter />
 
-      <section className="py-20 bg-primary text-primary-foreground">
+      <section className="py-12 md:py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready for Your East African Adventure?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 px-4">Ready for Your East African Adventure?</h2>
+          <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto opacity-90 px-4">
             Book your dream safari today and create memories that will last a lifetime
           </p>
-          <Button size="lg" variant="secondary" asChild className="text-lg px-8 py-6">
+          <Button size="lg" variant="secondary" asChild className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6">
             <Link to="/packages">Start Planning Now</Link>
           </Button>
         </div>
