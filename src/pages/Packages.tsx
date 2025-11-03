@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search } from "lucide-react";
 
-// Import African wildlife images for packages
+// Import package images
 import maasaiMaraImg from "@/assets/destinations/maasai-mara-real.jpg";
 import serengetiImg from "@/assets/destinations/serengeti-real.jpg";
 import mountKenyaImg from "@/assets/destinations/mount-kenya-real.jpg";
@@ -15,7 +15,7 @@ import zanzibarImg from "@/assets/destinations/zanzibar-beach-real.jpg";
 import amboseliImg from "@/assets/destinations/amboseli-real.jpg";
 import bwindiImg from "@/assets/destinations/bwindi-forest.jpg";
 
-// Map package image identifiers to actual images
+// Map package image identifiers to images
 const packageImages: Record<string, string> = {
   "maasai-mara": maasaiMaraImg,
   "serengeti": serengetiImg,

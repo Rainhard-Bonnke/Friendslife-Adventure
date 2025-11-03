@@ -7,6 +7,24 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, Users, MapPin, Check, Star, Loader2, ArrowLeft } from "lucide-react";
 
+// Import package images
+import maasaiMaraImg from "@/assets/destinations/maasai-mara-real.jpg";
+import serengetiImg from "@/assets/destinations/serengeti-real.jpg";
+import mountKenyaImg from "@/assets/destinations/mount-kenya-real.jpg";
+import zanzibarImg from "@/assets/destinations/zanzibar-beach-real.jpg";
+import amboseliImg from "@/assets/destinations/amboseli-real.jpg";
+import bwindiImg from "@/assets/destinations/bwindi-forest.jpg";
+
+// Map package image identifiers to images
+const packageImages: Record<string, string> = {
+  "maasai-mara": maasaiMaraImg,
+  "serengeti": serengetiImg,
+  "mount-kenya": mountKenyaImg,
+  "zanzibar": zanzibarImg,
+  "amboseli": amboseliImg,
+  "bwindi": bwindiImg,
+};
+
 const PackageDetail = () => {
   const { id } = useParams();
 
@@ -109,7 +127,7 @@ const PackageDetail = () => {
       {/* Hero Image */}
       <div className="relative h-[60vh] mt-16">
         <img 
-          src={displayData.image_url || "/placeholder.svg"} 
+          src={packageImages[displayData.image_url || ""] || maasaiMaraImg} 
           alt={displayData.title}
           className="w-full h-full object-cover"
         />

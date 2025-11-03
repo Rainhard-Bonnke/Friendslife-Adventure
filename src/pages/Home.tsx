@@ -9,6 +9,8 @@ import SpecialOffers from "@/components/SpecialOffers";
 import Newsletter from "@/components/Newsletter";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import TrustBadges from "@/components/TrustBadges";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import TravelRequirements from "@/components/TravelRequirements";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, MapPin, Shield, Award, Headphones } from "lucide-react";
@@ -113,6 +115,9 @@ const Home = () => {
         </div>
         
         <div className="relative z-10 container mx-auto px-4 sm:px-6 text-white text-center">
+          <div className="mb-3 sm:mb-4 text-accent font-semibold text-base sm:text-lg md:text-xl animate-fade-in">
+            Karibu Kenya, Hakuna Matata 🦁
+          </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 sm:mb-4 md:mb-6 animate-fade-in leading-tight">
             Discover the Magic of East Africa
           </h1>
@@ -239,7 +244,11 @@ const Home = () => {
 
       <SpecialOffers />
 
+      <WhyChooseUs />
+
       <Testimonials />
+
+      <TravelRequirements />
 
       <Newsletter />
 
