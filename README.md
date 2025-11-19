@@ -1,73 +1,69 @@
-# Welcome to your Lovable project
+# Friendslife Adventure - Safari Kenya Tours
 
-## Project info
+Experience Kenya's breathtaking safaris and wildlife adventures with Friendslife Adventure. Expert-guided tours, authentic experiences, and unforgettable memories.
 
-**URL**: https://lovable.dev/projects/535b5628-ef21-4427-9aa6-231c52ea1a3a
+## Getting Started
 
-## How can I edit this code?
+### Prerequisites
 
-There are several ways of editing your application.
+- Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/535b5628-ef21-4427-9aa6-231c52ea1a3a) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### Installation
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Step 1: Clone the repository
+git clone https://github.com/Rainhard-Bonnke/Friendslife-Adventure.git
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Step 2: Navigate to the project directory
+cd Friendslife-Adventure
 
-# Step 3: Install the necessary dependencies.
+# Step 3: Install dependencies
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Build for Production
 
-**Use GitHub Codespaces**
+```sh
+npm run build
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
+## Technologies Used
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Vite** - Next-generation frontend tooling
+- **TypeScript** - Type-safe JavaScript
+- **React** - UI library
+- **shadcn-ui** - High-quality React components
+- **Tailwind CSS** - Utility-first CSS framework
+- **React Router** - Client-side routing
+- **Supabase** - Backend and authentication
+- **TanStack Query** - Data fetching and caching
 
-## How can I deploy this project?
+## Project Structure
 
-Simply open [Lovable](https://lovable.dev/projects/535b5628-ef21-4427-9aa6-231c52ea1a3a) and click on Share -> Publish.
+```
+src/
+├── components/     # Reusable UI components
+├── pages/          # Application pages
+├── hooks/          # Custom React hooks
+├── lib/            # Utility functions
+├── integrations/   # External service integrations
+└── assets/         # Images and other assets
+```
 
-## Can I connect a custom domain to my Lovable project?
+## Features
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- Responsive design for all devices
+- Destination browsing and details
+- Package booking system
+- User authentication with Supabase
+- Admin panel for managing bookings and packages
+- Newsletter subscription
+- Image gallery
+- Travel requirements information
